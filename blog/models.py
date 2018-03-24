@@ -8,7 +8,7 @@ from django.utils.html import strip_tags
 # Create your models here.
 
 
-class Categoty(models.Model):
+class Category(models.Model):
     '''
     目录表
     数据表模型继承自 models.Model 类
@@ -62,7 +62,7 @@ class Post(models.Model):
     # 一篇文章只能对应一个分类，但是一个分类下可以有多篇文章，因此使用 ForeignKey，即一对多的关联关系。
     # 而对于标签来说，一篇文章可以有多个标签，同一个标签下也可能有多篇文章，因此使用 ManyToManyField，表明这是多对多的关联关系。
     # 同时文章可以没有标签，因此为标签 tags 指定了 blank=True。
-    category = models.ForeignKey(Categoty, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag, blank=True)
 
     # 逆向解析 url 获取 pk 参数，传递给 detail 视图函数处理并渲染页面
