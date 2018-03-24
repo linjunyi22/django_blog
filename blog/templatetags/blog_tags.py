@@ -1,6 +1,6 @@
 # 自定义模板标签
 
-from ..models import Post, Categoty, Tag
+from ..models import Post, Category, Tag
 from django import template
 
 register = template.Library()
@@ -21,7 +21,7 @@ def archives():
 # 分类模板标签
 @register.simple_tag
 def get_categories():
-    return Categoty.objects.all()
+    return Category.objects.all()
 
 
 # 标签云模板标签
