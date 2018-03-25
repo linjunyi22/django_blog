@@ -16,7 +16,7 @@
                         </a>
                     </span>
                     <span class="post-author"><a href="#">{{ post.author }}</a></span>
-                    <span class="comments-link"><a href="#">4 评论</a></span>
+                    <span class="comments-link"><a href="#">评论：<span style="color: indianred;">{{ post.comment_set.count }}</span></a></span>
                     <span class="views-count"><a href="#">588 阅读</a></span>
                 </div>
             </header>
@@ -24,7 +24,7 @@
                 <p>{{ post.excerpt }}</p>
                 <div class="read-more cl-effect-14">
                     {# 调用 post 方法逆向解析 url#}
-                    <a href="{{ post.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+                    <a href="{{ post.get_absolute_url }}" class="more-link">More<span class="meta-nav">→</span></a>
                 </div>
             </div>
         </article>
@@ -38,19 +38,19 @@
                     <a href="#">下一页</a>
                 </div>
                 -->
-    <div class="pagination">
-        <ul>
-            <li><a href="">1</a></li>
-            <li><a href="">...</a></li>
-            <li><a href="">4</a></li>
-            <li><a href="">5</a></li>
-            <li class="current"><a href="">6</a></li>
-            <li><a href="">7</a></li>
-            <li><a href="">8</a></li>
-            <li><a href="">...</a></li>
-            <li><a href="">11</a></li>
-        </ul>
-    </div>
+{#    <div class="pagination">#}
+{#        <ul>#}
+{#            <li><a href="">1</a></li>#}
+{#            <li><a href="">...</a></li>#}
+{#            <li><a href="">4</a></li>#}
+{#            <li><a href="">5</a></li>#}
+{#            <li class="current"><a href="">6</a></li>#}
+{#            <li><a href="">7</a></li>#}
+{#            <li><a href="">8</a></li>#}
+{#            <li><a href="">...</a></li>#}
+{#            <li><a href="">11</a></li>#}
+{#        </ul>#}
+{#    </div>#}
 {% endblock %}
 
 
