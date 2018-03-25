@@ -72,3 +72,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title  # 返回文章名称
 
+    # 指定排序
+    class Meta:
+        ordering = ['-created_time']
+

@@ -18,5 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('blog/', include('comments.urls', 'comments')),  # comments 应用根路径
     path('blog/', include('blog.urls', 'blog'))  # blog 应用根路径
+
 ]
