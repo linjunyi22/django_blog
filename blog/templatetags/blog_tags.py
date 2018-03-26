@@ -3,6 +3,7 @@
 from ..models import Post, Category, Tag
 from django import template
 
+
 register = template.Library()
 
 
@@ -28,4 +29,3 @@ def get_categories():
 @register.simple_tag
 def get_tags():
     return Tag.objects.all()
-
