@@ -13,11 +13,14 @@ import markdown
 #     post_list = models.Post.objects.all()
 #     return render(request, 'blog/index.html/', context={'post_list': post_list})
 
-# 类视图方法
+# 主页类视图方法
 class IndexView(ListView):
     model = models.Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
+    paginate_by = 1
+
+
 
 
 # 文章页视图函数
@@ -53,6 +56,7 @@ def detail(request, pk):
 #                                            )
 #     return render(request, 'blog/index.html/', context={'post_list': post_list})
 
+# 归档页类视图函数
 class ArchivesView(ListView):
     model = models.Post
     template_name = 'blog/index.html'
@@ -72,6 +76,7 @@ class ArchivesView(ListView):
 #     post_list = models.Post.objects.filter(category=cate)  # 根据分类名查记录
 #     return render(request, 'blog/index.html/', context={'post_list': post_list})
 
+# 分类页类视图函数
 class CategoryView(ListView):
     model = models.Post
     template_name = 'blog/index.html'
