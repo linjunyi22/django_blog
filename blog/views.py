@@ -18,9 +18,7 @@ class IndexView(ListView):
     model = models.Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
-    paginate_by = 1
-
-
+    paginate_by = 2
 
 
 # 文章页视图函数
@@ -85,4 +83,15 @@ class CategoryView(ListView):
     def get_queryset(self):
         cate = get_object_or_404(models.Category, pk=self.kwargs.get('pk'))
         return super(CategoryView, self).get_queryset().filter(category=cate)
+
+
+# 标签视图函数
+class TagView(ListView):
+    model = models.Post
+    template_name = 'blog/index.html'
+    context_object_name = 'post_list'
+
+    def get_queryset(self):
+        tag = get_object_or_404(models.Tag, pk=self.kwargs.get('pk'))
+        return super(TagView, self).get_queryset().filter(tags=tag)
 

@@ -3,25 +3,37 @@
 {% block main %}
                 <article class="post post-1">
                     <header class="entry-header">
-                <h1 class="entry-title">
-                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-                </h1>
-                <div class="entry-meta">
-                    <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
-                    <span class="post-date">
-                        <a href="#">
-                            <time class="entry-date" datetime="{{ post.created_time }}">
-                                {{ post.created_time }}
-                            </time>
-                        </a>
-                    </span>
-                    <span class="post-author"><a href="#">{{ post.author }}</a></span>
-                    <span class="comments-link"><a href="#location_comment" name="location_comment">{{ post.comment_set.count }} 评论</a></span>
-                    <span class="views-count"><a href="#">{{post.views}}阅读</a></span>
-                </div>
+                        <h1 class="entry-title">
+                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </h1>
+                        <div class="entry-meta">
+                            <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
+                            <span class="post-date">
+                                <a href="#">
+                                    <time class="entry-date" datetime="{{ post.created_time }}">
+                                        {{ post.created_time }}
+                                    </time>
+                                </a>
+                            </span>
+                            <span class="post-author"><a href="#">{{ post.author }}</a></span>
+                            <span class="comments-link"><a href="#location_comment" name="location_comment">{{ post.comment_set.count }} 评论</a></span>
+                            <span class="views-count"><a href="#">{{post.views}}阅读</a></span>
+                        </div>
+
                     </header>
-                    <p>{{ post.body | safe }}</p>
+                     <div class="entry-content clearfix">
+                         <div class="widget-tag-cloud">
+                            <ul>
+                                {% for tag in post.tags.all %}
+                                    <li><a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        {{ post.body|safe }}
+                    </div>
                 </article>
+
                 <section class="comment-area" id="comment-area">
                     <hr>
                     <h3>发表评论</h3>
