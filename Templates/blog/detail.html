@@ -29,7 +29,6 @@
                                 {% endfor %}
                             </ul>
                         </div>
-
                         {{ post.body|safe }}
                     </div>
                 </article>
@@ -83,5 +82,8 @@
 {% endblock %}
 
 {% block toc %}
-
+    <div class="widget widget-content">
+        <h3 class="widget-title">文章目录</h3>
+        {{ post.toc|safe }}
+    </div>
 {% endblock %}

@@ -1,12 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from . import models
 
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from comments.forms import CommentForm
 import markdown
-
-# Create your views here.
-
+from django.utils.text import slugify
+from markdown.extensions.toc import TocExtension
 
 # 主页视图函数
 # def index(request):
@@ -22,30 +21,73 @@ class IndexView(ListView):
 
 
 # 文章页视图函数
-def detail(request, pk):
-    post = get_object_or_404(models.Post, pk=pk)
+# def detail(request, pk):
+#     post = get_object_or_404(models.Post, pk=pk)
+#
+#     # 阅读量
+#     post.increase_views()
+#
+#     post.body = markdown.markdown(post.body,
+#                                   extensions=[
+#                                       'markdown.extensions.extra',
+#                                       'markdown.extensions.codehilite',
+#                                       # 'markdown.extensions.fenced_code',
+#                                       'markdown.extensions.toc'
+#                                   ])
+#     form = CommentForm()
+#     # 获取该文章下所有评论
+#     comment_list = post.comment_set.all()
+#
+#     context = {'post': post,
+#                'form': form,
+#                'comment_list': comment_list
+#                }
+#
+#     return render(request, 'blog/detail.html/', context=context)
 
-    # 阅读量
-    post.increase_views()
+class PostDetailView(DetailView):
+    # 这些属性的含义和 ListView 是一样的
+    model = models.Post
+    template_name = 'blog/detail.html'
+    context_object_name = 'post'
 
-    post.body = markdown.markdown(post.body,
-                                  extensions=[
-                                      'markdown.extensions.extra',
-                                      'markdown.extensions.codehilite',
-                                      # 'markdown.extensions.fenced_code',
-                                      'markdown.extensions.toc'
-                                  ])
-    form = CommentForm()
-    # 获取该文章下所有评论
-    comment_list = post.comment_set.all()
+    def get(self, request, *args, **kwargs):
+        # 覆写 get 方法的目的是因为每当文章被访问一次，就得将文章阅读量 +1
+        # get 方法返回的是一个 HttpResponse 实例
+        # 之所以需要先调用父类的 get 方法，是因为只有当 get 方法被调用后，
+        # 才有 self.object 属性，其值为 Post 模型实例，即被访问的文章 post
+        response = super(PostDetailView, self).get(request, *args, **kwargs)
 
-    context = {'post': post,
-               'form': form,
-               'comment_list': comment_list
-               }
+        # 将文章阅读量 +1
+        # 注意 self.object 的值就是被访问的文章 post
+        self.object.increase_views()
 
-    return render(request, 'blog/detail.html/', context=context)
+        # 视图必须返回一个 HttpResponse 对象
+        return response
 
+    def get_object(self, queryset=None):
+        post = super(PostDetailView, self).get_object(queryset=None)
+        md = markdown.Markdown(extensions=[
+            'markdown.extensions.extra',
+            'markdown.extensions.codehilite',
+            'markdown.extensions.toc',
+            TocExtension(slugify=slugify)
+        ])
+        post.body = md.convert(post.body)
+        post.toc = md.toc
+        return post
+
+    def get_context_data(self, **kwargs):
+        # 覆写 get_context_data 的目的是因为除了将 post 传递给模板外（DetailView 已经帮我们完成），
+        # 还要把评论表单、post 下的评论列表传递给模板。
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+        form = CommentForm()
+        comment_list = self.object.comment_set.all()
+        context.update({
+            'form': form,
+            'comment_list': comment_list
+        })
+        return context
 
 # 归档页视图函数
 # def archives(request, year, month):
