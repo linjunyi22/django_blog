@@ -82,17 +82,17 @@ class Post(models.Model):
         self.views += 1
         self.save(update_fields=['views'])
 
-    # def save(self, *args, **kwargs):
-    #     if not self.excerpt:
-    #         #  实例化一个 markdown 类，用于渲染 body 文本
-    #         md = markdown.Markdown(extensions=[
-    #             'markdown.extensions.extra',
-    #             'markdown.extensions.codehilite'
-    #         ])
-    #         # 先将 Markdown 文本渲染成 HTML 文本
-    #         # strip_tags 去掉 HTML 文本的全部 HTML 标签
-    #         # 从文本摘取前 54 个字符赋给 excerpt
-    #         self.excerpt = strip_tags(md.convert(self.body))[:54]
-    #
-    #     # 调用父类的 save 方法将数据保存到数据库中
-    #         super(Post, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.excerpt:
+            #  实例化一个 markdown 类，用于渲染 body 文本
+            md = markdown.Markdown(extensions=[
+                'markdown.extensions.extra',
+                'markdown.extensions.codehilite'
+            ])
+            # 先将 Markdown 文本渲染成 HTML 文本
+            # strip_tags 去掉 HTML 文本的全部 HTML 标签
+            # 从文本摘取前 54 个字符赋给 excerpt
+            self.excerpt = strip_tags(md.convert(self.body))[:54]
+
+        # 调用父类的 save 方法将数据保存到数据库中
+        super(Post, self).save(*args, **kwargs)
