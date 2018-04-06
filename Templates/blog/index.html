@@ -1,34 +1,48 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+{% load blog_tags %}
 {% block main %}
+    {#搜索功能错误信息#}
     {% if error_msg %}
         <p>{{ error_msg }}</p>
     {% endif %}
 
     {% for post in post_list %}
         <article class="post post-{{ post.pk }}">
-            <header class="entry-header">
-                <h1 class="entry-title">
-                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            <header  class="entry-header">
+                <h1 class="entry-title"  >
+                    <a href="{{ post.get_absolute_url }}" style="color:	#259;">{{ post.title }}</a>
                 </h1>
-                <div class="entry-meta">
-                    <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
+                <div class="entry-meta"  >
+                    <span class="post-category"><a href="{{ post.get_absolute_url }}">{{ post.category.name }}</a></span>
                     <span class="post-date">
-                        <a href="#">
+                        <a href="{{ post.get_absolute_url }}">
                             <time class="entry-date" datetime="{{ post.created_time }}">
                                 {{ post.created_time }}
                             </time>
                         </a>
                     </span>
-                    <span class="post-author"><a href="#">{{ post.author }}</a></span>
-                    <span class="comments-link"><a href="#">评论：<span style="color: indianred;">{{ post.comment_set.count }}</span></a></span>
-                    <span class="views-count"><a href="#">{{post.views}}阅读</a></span>
+                    <span class="post-author"><a href="{{ post.get_absolute_url }}">{{ post.author }}</a></span>
+                    {#评论#}
+                    <span class="comments-link">
+                        <a href="{{ post.get_absolute_url }}#location_comment" name="location_comment">
+                            <span  class="glyphicon glyphicon-comment"></span>
+                            <span>{{ post.comment_set.count }}</span>
+                        </a>
+                    </span>
+                    {#阅读#}
+                    <span class="views-count">
+                        <a href="{{ post.get_absolute_url }}">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span>{{post.views}}</span>
+                        </a></span>
                 </div>
             </header>
             <div class="entry-content clearfix">
                 <p>{{ post.excerpt }}</p>
                 <div class="read-more cl-effect-14">
                     {# 调用 post 方法逆向解析 url#}
-                    <a href="{{ post.get_absolute_url }}" class="more-link">More<span class="meta-nav">→</span></a>
+                    <a href="{{ post.get_absolute_url }}" class="more-link" >More</a>
                 </div>
             </div>
         </article>

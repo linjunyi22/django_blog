@@ -7,17 +7,23 @@
                             <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                         </h1>
                         <div class="entry-meta">
-                            <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
+                            <span class="post-category">{{ post.category.name }}</span>
                             <span class="post-date">
-                                <a href="#">
                                     <time class="entry-date" datetime="{{ post.created_time }}">
                                         {{ post.created_time }}
                                     </time>
+                            </span>
+                            <span class="post-author">{{ post.author }}</span>
+                            <span class="comments-link">
+                                <a href="#location_comment" >
+                                    <span  class="glyphicon glyphicon-comment"></span>
+                                    {{ post.comment_set.count }}
                                 </a>
                             </span>
-                            <span class="post-author"><a href="#">{{ post.author }}</a></span>
-                            <span class="comments-link"><a href="#location_comment" name="location_comment">{{ post.comment_set.count }} 评论</a></span>
-                            <span class="views-count"><a href="#">{{post.views}}阅读</a></span>
+                            <span class="views-count">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                    {{post.views}}
+                            </span>
                         </div>
 
                     </header>
@@ -36,11 +42,11 @@
                 <section class="comment-area" id="comment-area">
                     <hr>
                     <h3>发表评论</h3>
-<form action="{% url 'comments:post_comment' post.pk %}" method="post" class="comment-form">
+                    <form action="{% url 'comments:post_comment' post.pk %}" method="post" class="comment-form">
                       {% csrf_token %}
                       <div class="row">
                         <div class="col-md-4">
-                          <label for="{{ form.name.id_for_label }}" style="font-size: 18px;">名字：</label>
+                          <label for="{{ form.name.id_for_label }}" style="font-size: 18px;">昵称：</label>
                           {{ form.name }}
                           {{ form.name.errors }}
                         </div>
@@ -52,8 +58,8 @@
                         </div>
                       </div>    <!-- row -->
                     </form>
-                    <div class="comment-list-panel">
-                        <h4 class="location_comment">
+                    <div class="comment-list-panel ">
+                        <h4 id="location_comment" >
                             <span  class="glyphicon glyphicon-comment"></span>
                             评论列表  <span>({{ post.comment_set.count }})</span>
                         </h4>

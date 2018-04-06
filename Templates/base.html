@@ -9,6 +9,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {#icon#}
+    <link rel="shortcut icon" href="{% static 'blog/image/blog.ico' %}" type="image/x-icon">
     <!-- css -->
 {#    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">#}
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
@@ -28,6 +30,7 @@
 </head>
 
 <body>
+
 <div class="container">
     <header id="site-header">
         <div class="row">
@@ -42,7 +45,7 @@
                 </div>
             </div><!-- col-md-4 -->
 
-            <div class="col-md-8 col-sm-7 col-xs-4">
+            <div class="col-md-8 col-sm-7 col-xs-4" >
                 <nav class="main-nav" role="navigation">
                     <div class="navbar-header">
                         <button type="button" id="trigger-overlay" class="navbar-toggle">
@@ -50,10 +53,10 @@
                         </button>
                     </div>
 
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
                         <ul class="nav navbar-nav navbar-right">
                             <li class="cl-effect-11"><a href="{% url 'blog:index' %}" data-hover="首页">首页</a></li>
-                            <li class="cl-effect-11"><a href="#" data-hover="博客">博客</a></li>
+                            <li class="cl-effect-11"><a href="#" data-hover="留言">留言</a></li>
                             <li class="cl-effect-11"><a href="#" data-hover="关于">关于</a></li>
                             <li class="cl-effect-11"><a href="#" data-hover="联系">联系</a></li>
                         </ul>
@@ -71,10 +74,9 @@
             </div><!-- col-md-8 -->
 
         </div>
-<div style="border: 1px solid #999999;margin: 10px -20px;"></div>
+        <div style="border: 1px solid #999999;margin: 10px -20px;"></div>
     </header>
 </div>
-
 
 <div class="content-body">
     <div class="container">
@@ -135,7 +137,6 @@
                     <ul>
                         {% for tag in tags_list %}
                         <li>
-{#                            <a href="#">{{ tag.name }}（{{ tag.num_posts }}）</a>#}
                             <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
                         </li>
                         {% empty %}
@@ -146,11 +147,55 @@
                 <div class="rss">
                     <a href="{% url 'blog:rss' %}"><span class="ion-social-rss-outline"></span> RSS 订阅</a>
                 </div>
+
+                <div class="widget">
+                    <h3 class="widget-title">友情链接</h3>
+                    <ul id="friendly-link">
+                        <li><a href="https://www.zmrenwu.com/" target="_blank">追梦人物</a></li>
+                        <li><a href="http://www.pythonzh.cn/" target="_blank">Python 中文社区</a></li>
+                    </ul>
+                </div>
             </aside>
         </div>
     </div>
 </div>
 
+
+{#返回顶部#}
+<div id="backtotop" style="width: 56px;">
+    <img src="{%  static 'blog/image/backtotop.png' %}" alt="">
+</div>
+<script>
+    $(function(){
+        //当滚动条的位置处于距顶部300像素以下时，跳转链接出现，否则消失
+        $(function (){
+                $(window).scroll(function(){
+                if ($(window).scrollTop()>300){
+                    $("#backtotop").fadeIn(500);
+                }
+                else{
+                    $("#backtotop").fadeOut(500);
+                }
+            });
+
+                //当点击跳转链接后，回到页面顶部位置
+                $("#backtotop").click(function(){
+                $('body,html').animate({scrollTop:0},400);
+                    return false;
+                });
+        });
+    });
+</script>
+
+<footer id="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="copyright">© 2017 Halo Blog</p>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <!-- Mobile Menu -->
 <div class="overlay overlay-hugeinc">

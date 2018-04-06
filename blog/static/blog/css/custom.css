@@ -45,17 +45,21 @@ b {
     font-weight: 400;
 }
 
+li{
+    /*list-style: none;*/
+}
+
 a {
     color: #333;
 }
 
 a:hover, a:focus {
     text-decoration: none;
-    color: #000;
+    color: #708090 ;
 }
 
 ::selection {
-    background-color: #eee;
+    background-color: #D3D3D3 ;
 }
 
 body {
@@ -104,9 +108,10 @@ img {
  */
 
 #site-header {
+
     background-color: #FFF;
-    padding: 25px 20px;
-    margin-bottom: 40px;
+    padding: 25px 20px ;
+    /*margin-bottom: 40px;*/
     /*border-bottom: 1px solid #e7e7e7;*/
 }
 
@@ -210,25 +215,28 @@ img {
  */
 
 .content-body {
+    /*margin-top: 111px;*/
     padding-bottom: 4em;
 }
 
 .post {
     background: #fff;
-    padding: 30px 30px 0;
+    padding: 30px 30px 0px;
+    margin-bottom: 30px;
+    /*border-bottom: 1px solid #00AEAE;*/
 }
 
 .entry-title {
-    text-align: center;
+    text-align:center;
     font-size: 1.9em;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     line-height: 1.6;
-    padding: 10px 20px 0;
+    padding: 10px 0;
 }
 
 .entry-meta {
-    text-align: center;
-    color: #DDDDDD;
+    text-align:center;
+    color: #000;
     font-size: 13px;
     margin-bottom: 30px;
 }
@@ -346,6 +354,7 @@ img {
     line-height: 1.6;
     padding: 10px 0 0;
     font-weight: 400;
+    color:#FF9224;
 }
 
 .widget-recent-posts ul {
@@ -886,6 +895,7 @@ img {
  * 13.0 - Pagination
  */
 .pagination-simple {
+    margin-top: 50px;
     padding-left: 30px;
     font-size: 16px;
 }
@@ -902,4 +912,20 @@ img {
 
 .current a {
     color: red;
+}
+
+/*友情链接*/
+#friendly-link li a{
+    font-weight: 400;
+    font-size: 16px;
+    color: #00AEAE;
+}
+
+/*回到顶部*/
+#backtotop{
+    position: fixed;
+    bottom:30px;
+    right:30px;
+    display: none;
+    cursor: pointer;
 }
