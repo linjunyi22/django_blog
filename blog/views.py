@@ -18,7 +18,7 @@ class IndexView(ListView):
     model = models.Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
-    paginate_by = 2
+    paginate_by = 6
 
 
 # 文章页视图函数
