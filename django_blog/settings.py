@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'i$!kmbf+=#uc+#0%1#+l-o@fr76k@^#y(t^cu$j&cut2__mq43'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.halolin.fun']
 
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'blog',  # blog 应用
-    'comments'  # 评论应用
+    'comments',  # 评论应用
+    'msgboard',  # 留言板应用
 ]
 
 MIDDLEWARE = [

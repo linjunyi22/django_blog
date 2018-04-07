@@ -15,5 +15,6 @@ urlpatterns = [
     path(r'category/<int:pk>/', views.CategoryView.as_view(), name='category'),
     path(r'tag/<int:pk>/', views.TagView.as_view(), name='tag'),
     path(r'all/rss/', AllPostsRssFeed(), name='rss'),
-    path(r'search/', views.search, name='search')
+    path(r'search/', views.search, name='search'),
+    path(r'about/', views.about, name='about')
 ]
