@@ -55,10 +55,10 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="cl-effect-11"><a href="{% url 'blog:index' %}" data-hover="首页">首页</a></li>
-                            <li class="cl-effect-11"><a href="#" data-hover="留言">留言</a></li>
-                            <li class="cl-effect-11"><a href="#" data-hover="关于">关于</a></li>
-                            <li class="cl-effect-11"><a href="#" data-hover="联系">联系</a></li>
+                            <li class="cl-effect-11"><a href="{% url 'blog:index' %}" data-hover="Home">Home</a></li>
+                            <li class="cl-effect-11"><a href="{% url 'msgboard:msg_board' %}" data-hover="GuestBook">GuestBook</a></li>
+                            <li class="cl-effect-11"><a href="{% url 'blog:about' %}" data-hover="About">About</a></li>
+                            <li class="cl-effect-11"><a href="#" data-hover="Discovery">Discovery</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
@@ -149,10 +149,11 @@
                 </div>
 
                 <div class="widget">
-                    <h3 class="widget-title">友情链接</h3>
+                    <h3 class="widget-title">相关链接</h3>
                     <ul id="friendly-link">
                         <li><a href="https://www.zmrenwu.com/" target="_blank">追梦人物</a></li>
                         <li><a href="http://www.pythonzh.cn/" target="_blank">Python 中文社区</a></li>
+                        <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
                     </ul>
                 </div>
             </aside>
@@ -203,9 +204,9 @@
     <nav>
         <ul>
             <li><a href="{% url 'blog:index' %}">首页</a></li>
-            <li><a href="#">博客</a></li>
-            <li><a href="#">关于</a></li>
-            <li><a href="#">联系</a></li>
+            <li><a href="{% url 'msgboard:msg_board' %}">留言</a></li>
+            <li><a href="{% url 'blog:about' %}">关于</a></li>
+            <li><a href="#">发现</a></li>
         </ul>
     </nav>
 </div>

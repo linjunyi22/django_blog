@@ -74,6 +74,11 @@ p {
     letter-spacing: 0.01em;
 }
 
+input,textarea{
+    border-radius: 8px;
+}
+
+
 #single p,
 #page p {
     margin-bottom: 25px;
@@ -100,7 +105,7 @@ img {
 }
 
 .height-40px {
-    margin-bottom: 40px;
+    margin-bottom: 80px;
 }
 
 /**
@@ -236,9 +241,13 @@ img {
 
 .entry-meta {
     text-align:center;
-    color: #000;
+    color: dimgray;
     font-size: 13px;
     margin-bottom: 30px;
+}
+
+.entry-meta a{
+    color: dimgray;
 }
 
 .entry-content {
@@ -253,7 +262,7 @@ img {
 .post-author::after,
 .comments-link::after {
     content: ' ·';
-    color: #000;
+    color: dimgray;
 }
 
 /**
@@ -653,13 +662,13 @@ img {
 }
 
 .social li {
-    display: inline-block;
-    margin-right: 10px;
-    margin-bottom: 20px;
+    display: block;
+    /*margin-right: 10px;*/
+    margin-bottom: 10px;
 }
 
 .social li a {
-    border: 1px solid #888;
+    /*border: 1px solid #888;*/
     font-size: 22px;
     color: #888;
     transition: all 0.3s ease-in;
@@ -670,19 +679,19 @@ img {
     color: #fff;
 }
 
-.facebook a {
-    padding: 12px 21px;
+.wechat a {
+    padding: 12px 20px;
 }
 
-.twitter a {
-    padding: 12px 15px;
+.weibo a {
+    padding: 12px 20px;
 }
 
-.google-plus a {
-    padding: 12px 15px;
+.email a {
+    padding: 12px 20px;
 }
 
-.tumblr a {
+.github a {
     padding: 12px 20px;
 }
 
@@ -863,7 +872,7 @@ img {
 }
 
 .comment-list-panel {
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 .comment-list {
@@ -928,4 +937,11 @@ img {
     right:30px;
     display: none;
     cursor: pointer;
+}
+
+/*留言板图片*/
+.guestbook-pic{
+    margin-top: 30px;
+    border-radius: 15px;
+    opacity: 0.8;
 }
