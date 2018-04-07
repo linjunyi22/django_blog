@@ -1,0 +1,161 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Halo Blog</title>
+
+    <!-- meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {#icon#}
+    <link rel="shortcut icon" href="{% static 'blog/image/blog.ico' %}" type="image/x-icon">
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'blog/css/pace.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/highlights/github.css' %}">
+
+    <!-- js -->
+    <script src="{%  static 'blog/js/jquery-2.1.3.min.js' %}"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{%  static 'blog/js/pace.min.js' %}"></script>
+    <script src="{%  static 'blog/js/modernizr.custom.js' %}"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <header id="site-header">
+        <div class="row">
+            <div class="col-md-4 col-sm-5 col-xs-8">
+                <div class="logo">
+                    <h1>
+                        <a href="{% url 'blog:index' %}">
+                            <b style="color: #3399FF">Halo</b>
+                            <span style="color: #FF6633;">Blog</span>
+                        </a>
+                    </h1>
+                </div>
+            </div><!-- col-md-4 -->
+
+            <div class="col-md-8 col-sm-7 col-xs-4" >
+                <nav class="main-nav" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" id="trigger-overlay" class="navbar-toggle">
+                            <span class="ion-navicon"></span>
+                        </button>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="cl-effect-11"><a href="{% url 'blog:index' %}" data-hover="Home">Home</a></li>
+                            <li class="cl-effect-11"><a href="{% url 'msgboard:msg_board' %}" data-hover="GuestBook">GuestBook</a></li>
+                            <li class="cl-effect-11"><a href="{% url 'blog:about' %}" data-hover="About">About</a></li>
+                            <li class="cl-effect-11"><a href="#" data-hover="Discovery">Discovery</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
+                <div id="header-search-box">
+                    <a id="search-menu" href="#"><span id="search-icon" class="ion-ios-search-strong"></span></a>
+                    <div id="search-form" class="search-form">
+                        <form role="search" method="get" id="searchform" action="#">
+                            <input type="search" placeholder="搜索" required>
+                            <button type="submit"><span class="ion-ios-search-strong"></span></button>
+                        </form>
+                    </div>
+                </div>
+            </div><!-- col-md-8 -->
+
+        </div>
+        <div style="border: 1px solid #999999;margin: 10px -20px;"></div>
+    </header>
+</div>
+
+<div class="content-body">
+			<div class="container">
+				<div class="row">
+					<main class="col-md-12">
+						<h1 class="page-title">About Me</h1>
+						<article class="post">
+							<div class="entry-content clearfix">
+								<figure class="img-responsive-center">
+									<img class="img-responsive" src="{% static 'blog/image/me.jpg' %}" alt="Developer Image">
+								</figure>
+
+								<p>Python 萌新，现居广州。</p>
+                                <p>本博客使用Python3.6 + Django2.0 + Bootstrap编写，部署在阿里云。</p>
+                                <div class="height-40px"></div>
+								<h2 class="title text-center">Social</h2>
+								<ul class="social">
+{#									<li class="chatbubbles"><a href="#"><span class="icon ion-chatbubbles"></span></a></li>#}
+{#									<li class="email"><a href="#"><span class="icon ion-email"></span></a></li>#}
+{#									<li class="twitter"><a href="#"><span class="ion-social-twitter"></span></a></li>#}
+{#									<li class="github"><a href="https://github.com/linjunyi22" target="_blank"><span class="ion-social-github"></span></a></li>#}
+                                    <li class="github"><a href="https://github.com/linjunyi22" target="_blank">Github</a></li>
+                                    <li class="weibo"><a href="https://www.weibo.com/u/2090712545" target="_blank">微博</a></li>
+                                    <li class="wechat"><a href="#">微信:linjunyi22</a></li>
+                                    <li class="email"><a href="#">Email:ljyalan@126.com</a></li>
+                                </ul>
+							</div>
+						</article>
+					</main>
+				</div>
+			</div>
+		</div>
+
+
+{#返回顶部#}
+<div id="backtotop" style="width: 56px;">
+    <img src="{%  static 'blog/image/backtotop.png' %}" alt="">
+</div>
+<script>
+    $(function(){
+        //当滚动条的位置处于距顶部300像素以下时，跳转链接出现，否则消失
+        $(function (){
+                $(window).scroll(function(){
+                if ($(window).scrollTop()>300){
+                    $("#backtotop").fadeIn(500);
+                }
+                else{
+                    $("#backtotop").fadeOut(500);
+                }
+            });
+
+                //当点击跳转链接后，回到页面顶部位置
+                $("#backtotop").click(function(){
+                $('body,html').animate({scrollTop:0},400);
+                    return false;
+                });
+        });
+    });
+</script>
+
+<footer id="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="copyright">© 2017 Halo Blog</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Mobile Menu -->
+<div class="overlay overlay-hugeinc">
+    <button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
+    <nav>
+        <ul>
+            <li><a href="{% url 'blog:index' %}">首页</a></li>
+            <li><a href="{% url 'msgboard:msg_board' %}">留言</a></li>
+            <li><a href="{% url 'blog:about' %}">关于</a></li>
+            <li><a href="#">发现</a></li>
+        </ul>
+    </nav>
+</div>
+
+<script src="{% static 'blog/js/script.js' %}"></script>
+
+</body>
+</html>
