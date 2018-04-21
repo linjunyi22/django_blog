@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+import blog.views as bv
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', bv.IndexView.as_view()),
     path('blog/', include('comments.urls', 'comments')),  # comments 应用根路径
     path('blog/', include('blog.urls', 'blog')),  # blog 应用根路径
     path('blog/', include('msgboard.urls', 'msgboard')),  # msgboard 应用根路径

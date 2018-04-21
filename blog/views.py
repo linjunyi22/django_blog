@@ -146,7 +146,7 @@ def search(request):
 
     if not q:
         error_msg = '请输入关键字'
-        return render(request, 'blog/index.html', {'error_msg':error_msg})
+        return render(request, 'blog/index.html', {'error_msg': error_msg})
 
     post_list = models.Post.objects.filter(Q(title__icontains=q) | Q(body__icontains=q))
     return render(request, 'blog/index.html', {'error_msg': error_msg,
