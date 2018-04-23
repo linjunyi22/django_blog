@@ -55,7 +55,7 @@ a {
 
 a:hover, a:focus {
     text-decoration: none;
-    color: #33cccc ;
+    color: #f92672 ;
 }
 
 ::selection {
@@ -366,7 +366,8 @@ img {
 }
 
 .widget a:hover{
-    font-size: 15px;
+    /*font-size: 15px;*/
+    padding: 8px;
 }
 
 .widget-title {
@@ -570,6 +571,7 @@ img {
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#fee18d', EndColorStr='#fec86c');
 
 	border-color:#e1b160;
+
 }
 
 .tag:hover:before {
