@@ -4,7 +4,7 @@
 {% block main %}
 
     <img src="{% static 'blog/image/gusetbook.jpg' %}" alt="guestbook" class="guestbook-pic">
-    <h3 style="color:#3399FF; margin:30px 0 -15px;">留言墙</h3>
+    <h3 class="msg-title">留言板</h3>
     <form action="{% url 'msgboard:msg_board' %}" method="post" class="comment-form" style="margin-top: 50px;">
     {% csrf_token %}
         <div class="row">
@@ -20,7 +20,7 @@
     </form>
     <div class="comment-list-panel ">
         <h4>
-            <span  class="glyphicon glyphicon-comment"></span>
+            <span class="glyphicon glyphicon-comment"></span>
             留言板，<span>共{{ messages.count }}条</span>
         </h4>
         <ul class="comment-list list-unstyled">

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Halo Blog</title>
+    <title>Halo博客--By Django</title>
 
     <!-- meta -->
     <meta charset="UTF-8">
@@ -11,9 +11,8 @@
 
     {#icon#}
     <link rel="shortcut icon" href="{% static 'blog/image/blog.ico' %}" type="image/x-icon">
+
     <!-- css -->
-{#    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">#}
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="{% static 'blog/css/pace.css' %}">
@@ -22,8 +21,6 @@
 
     <!-- js -->
     <script src="{%  static 'blog/js/jquery-2.1.3.min.js' %}"></script>
-{#    <script src="{%  static 'blog/js/bootstrap.min.js' %}"></script>#}
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="{%  static 'blog/js/pace.min.js' %}"></script>
     <script src="{%  static 'blog/js/modernizr.custom.js' %}"></script>
@@ -88,73 +85,84 @@
             <aside class="col-md-4">
                 {% block toc %}
                 {% endblock toc %}
-                <div class="widget widget-recent-posts">
-                    <h3 class="widget-title">最新文章</h3>
-                    {% get_recent_posts as recent_post_list %}
-                    <ul>
-                        {% for post in recent_post_list %}
-                        <li>
-                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-                        </li>
-                    {% empty %}
-                        暂无文章
-                    {% endfor %}
-                    </ul>
-                </div>
-                <div class="widget widget-archives">
-                    <h3 class="widget-title">归档</h3>
-                    {% archives as date_list %}
-                    <ul>
-                        {% for date in date_list %}
-                        <li>
-                            <a href="{% url 'blog:archives' date.year date.month %}">
-                                {{ date.year }} 年 {{ date.month }} 月
-                            </a>
-                        </li>
+                <div class="panel panel-primary widget widget-recent-posts">
+                    <div class="panel-heading widget-title">最新文章</div>
+                    <div class="panel-body">
+                        {% get_recent_posts as recent_post_list %}
+                        <ul>
+                            {% for post in recent_post_list %}
+                            <li>
+                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                            </li>
                         {% empty %}
-                            暂无归档
+                            暂无文章
                         {% endfor %}
-                    </ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel panel-success widget widget-archives">
+                    <div class="panel-heading widget-title">归档</div>
+                    <div class="panel-body">
+                        {% archives as date_list %}
+                        <ul>
+                            {% for date in date_list %}
+                            <li>
+                                <a href="{% url 'blog:archives' date.year date.month %}">
+                                    {{ date.year }} 年 {{ date.month }} 月
+                                </a>
+                            </li>
+                            {% empty %}
+                                暂无归档
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="widget widget-category">
-                    <h3 class="widget-title">分类</h3>
-                    {% get_categories as category_list %}
-                    <ul>
-                        {% for category in category_list %}
-                        <li>
-                            <a href="{% url 'blog:category' category.pk %}">{{ category.name }}<span class="post-count">({{ category.num_posts }})</span></a>
-                        </li>
-                        {% empty %}
-                        暂无分类
-                        {% endfor %}
-                    </ul>
+                <div class="panel panel-info widget widget-category">
+                    <div class="panel-heading widget-title">分类</div>
+                    <div class="panel-body">
+                        {% get_categories as category_list %}
+                        <ul>
+                            {% for category in category_list %}
+                            <li>
+                                <a href="{% url 'blog:category' category.pk %}">{{ category.name }}<span class="badge" style="margin-left: 10px;">{{ category.num_posts }}</span></a>
+                            </li>
+                            {% empty %}
+                            暂无分类
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="widget widget-tag-cloud">
-                    <h3 class="widget-title">标签云</h3>
-                    {% get_tags as tags_list %}
-                    <ul>
-                        {% for tag in tags_list %}
-                        <li>
-                            <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
-                        </li>
-                        {% empty %}
-                            暂无标签
-                        {% endfor %}
-                    </ul>
+                <div class="panel panel-warning widget widget-tag-cloud">
+                    <div class="panel-heading widget-title">标签云</div>
+                    <div class="panel-body">
+                        {% get_tags as tags_list %}
+                        <ul>
+                            {% for tag in tags_list %}
+                            <li>
+                                <a href="{% url 'blog:tag' tag.pk %}" class="tag">{{ tag.name }}</a>
+                            </li>
+                            {% empty %}
+                                暂无标签
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
+
+                <div class="panel panel-danger widget ">
+                    <div class="panel-heading widget-title">相关链接</div>
+                    <div class="panel-body">
+                        <ul id="friendly-link">
+                            <li><a href="https://www.zmrenwu.com/" target="_blank">追梦人物</a></li>
+                            <li><a href="http://www.pythonzh.cn/" target="_blank">Python 中文社区</a></li>
+                            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="rss">
-                    <a href="{% url 'blog:rss' %}"><span class="ion-social-rss-outline"></span> RSS 订阅</a>
-                </div>
-
-                <div class="widget">
-                    <h3 class="widget-title">相关链接</h3>
-                    <ul id="friendly-link">
-                        <li><a href="https://www.zmrenwu.com/" target="_blank">追梦人物</a></li>
-                        <li><a href="http://www.pythonzh.cn/" target="_blank">Python 中文社区</a></li>
-                        <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
-                    </ul>
+                    <a href="{% url 'blog:rss' %}"><span class="ion-social-rss-outline"></span>RSS 订阅</a>
                 </div>
             </aside>
         </div>
