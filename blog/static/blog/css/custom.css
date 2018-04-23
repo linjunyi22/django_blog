@@ -55,7 +55,7 @@ a {
 
 a:hover, a:focus {
     text-decoration: none;
-    color: #708090 ;
+    color: #33cccc ;
 }
 
 ::selection {
@@ -225,9 +225,11 @@ img {
 }
 
 .post {
-    background: #fff;
+    background: #f0f0f0;
     padding: 30px 30px 0px;
     margin-bottom: 30px;
+    margin-top: 10px;
+    border-radius: 10px;
     /*border-bottom: 1px solid #00AEAE;*/
 }
 
@@ -352,9 +354,15 @@ img {
  * 5.0 - Widget
  */
 
-.widget {
-    background: #fff;
-    padding: 30px 0 0;
+.widget, .rss{
+    background: #F0F0F0;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.widget a:hover{
+    margin-left: 5px;
 }
 
 .widget-title {
@@ -363,7 +371,7 @@ img {
     line-height: 1.6;
     padding: 10px 0 0;
     font-weight: 400;
-    color:#FF9224;
+    color:#259;
 }
 
 .widget-recent-posts ul {
@@ -462,6 +470,7 @@ img {
 .rss {
     font-size: 21px;
     margin-top: 30px;
+
 }
 
 .rss a {
@@ -473,8 +482,8 @@ img {
  */
 
 #site-footer {
-    padding-top: 10px;
-    padding: 0 0 1.5em 0;
+    /*padding-top: 20px;*/
+    padding: 20px 0 1.5em 0;
 }
 
 .copyright {
@@ -903,7 +912,17 @@ img {
 /**
  * 13.0 - Pagination
  */
-.pagination-simple {
+
+.pagination a{
+    /*color: deepskyblue;*/
+    color:#fff;
+    background:deepskyblue;
+    font-weight:600;
+    padding: 5px 10px;
+    border-radius: 5px;
+    /*background: #fff0f0;*/
+}
+/*.pagination-simple {
     margin-top: 50px;
     padding-left: 30px;
     font-size: 16px;
@@ -923,6 +942,7 @@ img {
     color: red;
 }
 
+*/
 /*友情链接*/
 #friendly-link li a{
     font-weight: 400;
@@ -937,6 +957,7 @@ img {
     right:30px;
     display: none;
     cursor: pointer;
+    z-index: 9999;
 }
 
 /*留言板图片*/
