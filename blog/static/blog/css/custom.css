@@ -233,6 +233,9 @@ img {
     /*border-bottom: 1px solid #00AEAE;*/
 }
 
+.post:hover{
+    box-shadow: 0 0 8px #888888;
+}
 .entry-title {
     text-align:center;
     font-size: 1.9em;
@@ -368,6 +371,7 @@ img {
 .widget a:hover{
     /*font-size: 15px;*/
     padding: 8px;
+    font-weight: bold;
 }
 
 .widget-title {
