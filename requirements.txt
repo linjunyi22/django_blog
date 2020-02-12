@@ -10,7 +10,7 @@ constantly==15.1.0
 cryptography==2.1.4
 cssselect==1.0.3
 Django==2.2.10
-Flask==0.12.2
+Flask==1.0
 hyperlink==18.0.0
 idna==2.6
 incremental==17.5.0
